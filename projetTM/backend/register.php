@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: application/json');
+
 // Initialiser un tableau pour stocker les erreurs
 $errors = [];
 
@@ -33,21 +34,16 @@ if (empty($_POST['password'])) {
 }
 
 // Vérifier la confirmation du mot de passe
-if (empty($_POST['confirm_password'])) {
+if (empty($_POST['passwordC'])) {
     $errors['confirm_passwordErrors'] = 'La confirmation du mot de passe est requise.';
-} elseif ($_POST['password'] !== $_POST['confirm_password']) {
+} elseif ($_POST['password'] !== $_POST['passwordC']) {
     $errors['confirm_passwordErrors'] = 'Les mots de passe ne correspondent pas.';
 }
 
+// Retourner les résultats en JSON
 if (!empty($errors)) {
     echo json_encode(['success' => false, 'errors' => $errors]);
 } else {
     echo json_encode(['success' => true, 'message' => 'Le formulaire a été soumis avec succès !']);
-    exit;
 }
-
-
 ?>
-
-
-

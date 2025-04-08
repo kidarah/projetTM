@@ -1,27 +1,27 @@
 $(document).ready(function() {
-    $("#form").on("submit", function(event) {
+    $(".form").on("submit", function(event) {
         event.preventDefault();
 
         var formData = $(this).serialize();
 
+        // Vider les messages d'erreur précédents
+        $(".form span[id$='Errors']").text('');
+
         $.ajax({
-            url: "register.php",
+            url: "backend/register.php",
             type: "POST",
+            data: formData,
             dataType: "json",
             success: function(response) {
                 if (response.errors) {
                     for (var field in response.errors) {
-                        $("#" + field + "Error").text(response.errors[field]);
+                        $("#" + field).text(response.errors[field]);
                     }
                 } else {
-                    alert(response.success);
-                    $("#form")[0].reset();
+                    alert(response.message);
+                    $(".form")[0].reset();
                 }
             },
-            error: function(xhr, status, error) {
-                console.error("Erreur AJAX:", error);
-                alert("Une erreur s'est produite. Veuillez vérifier les logs.");
-            }
         });
     });
 });
