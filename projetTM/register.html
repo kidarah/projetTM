@@ -5,36 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="connexion.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="register.js"></script>
 </head>
 <body>
-    <form class="form">
+    <form class="form" method="POST" >
         <p class="title">Register </p>
         <p class="message">Signup now and get full access to our app. </p>
-            <div class="flex">
+
+        <!-- Radio buttons for user type -->
+        <div>
             <label>
-                <input class="input" type="text" placeholder="" required>
+                <input type="radio" name="userType" value="chef" required>
+                Chef
+            </label>
+            <label>
+                <input type="radio" name="userType" value="client" required>
+                Client
+            </label>
+            <span color = "red" class="userTypeErrors"></span>
+        </div>
+        
+        <div class="flex">
+            <label>
+                <input name="firstname" class="input" type="text" placeholder="" >
                 <span>Firstname</span>
+                <span color = "red" class="firstnameErrors"></span>
             </label>
     
             <label>
-                <input class="input" type="text" placeholder="" required>
+                <input name="lastname"class="input" type="text" placeholder="" required>
                 <span>Lastname</span>
+                <span color = "red" class="lastnameErrors"></span>
             </label>
         </div>  
                 
         <label>
-            <input class="input" type="email" placeholder="" required>
+            <input name="email" class="input" type="email" placeholder="" required>
             <span>Email</span>
+            <span color = "red" class="emailErrors"></span>
         </label> 
             
         <label>
-            <input class="input" type="password" placeholder="" required>
+            <input name = "password" class="input" type="password" placeholder="" required>
             <span>Password</span>
+            <span color = "red" class="passwordErrors"></span>
         </label>
         <label>
-            <input class="input" type="password" placeholder="" required>
+            <input name= "passwordC" class="input" type="password" placeholder="" required>
             <span>Confirm password</span>
+            <span color = "red" class="confirm_passwordErrors"></span>
         </label>
+        
         <button class="submit">Submit</button>
         <p class="signin">Already have an acount ? <a href="connexion.html">Signin</a> </p>
     </form>
