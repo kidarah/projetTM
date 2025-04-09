@@ -1,0 +1,88 @@
+.custum-file-upload {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px dashed #fed402;
+    background-color: #1f1f1f;
+    cursor: pointer;
+    transition: background 0.3s, border 0.3s;
+    margin: 20px auto;
+  }
+  
+  .custum-file-upload:hover {
+    background-color: #292929;
+    border-color: #ffe14d;
+  }
+  
+  .custum-file-upload .icon svg {
+    height: 70px;
+    fill: #fed402;
+  }
+  
+  .custum-file-upload .text span {
+    color: #ccc;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: center;
+  }
+  
+  .custum-file-upload input {
+    display: none;
+  }
+  
+/*
+.custum-file-upload {
+    height: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    gap: 20px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #e8e8e8;
+    background-color: #212121;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 48px 35px -48px #e8e8e8;
+  }
+  
+  .custum-file-upload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .custum-file-upload .icon svg {
+    height: 80px;
+    fill: #e8e8e8;
+  }
+  
+  .custum-file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .custum-file-upload .text span {
+    font-weight: 400;
+    color: #e8e8e8;
+  }
+  
+  .custum-file-upload input {
+    display: none;
+  }
+
+  .gallery-grid.added {
+    outline: 2px solid #fed402;
+    transition: outline 0.3s ease-in-out;
+  }*/
+  
