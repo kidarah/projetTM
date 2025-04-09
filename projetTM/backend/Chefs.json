@@ -1,0 +1,20 @@
+[
+  {
+    "email": "chef1@yumchef.com",
+    "nom": "Julien",
+    "specialite": "Cuisine française",
+    "bio": "Passionné par les plats traditionnels.",
+    "photo": "",
+    "plats": []
+  },
+  {
+    "email": "chef2@yumchef.com",
+    "nom": "Lina",
+    "specialite": "Cuisine fusion",
+    "bio": "Créative et expérimentale.",
+    "photo": "",
+    "plats": []
+  }
+]
+
+  
