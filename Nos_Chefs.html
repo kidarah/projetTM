@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nos Chefs – Chef à Domicile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="leaflet.css">
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="FrontView.html">
+      <img src="img/Ecusson-remove.png" alt="YumChef" id="imgLogo"> YumChef
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="Nos_Chefs.html">Nos chefs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Contact.html">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <section class="BestChefs">
+    <!-- contains 3 best chefs  -->
+    <div class="container my-5">
+      <h2 class="text-center mb-5">Découvrez nos chefs partenaires</h2>
+      <div id="chefs-container" class="row g-4">
+      </div>
+    </div>
+  </section>
+
+  <section class="">
+    <form action="">
+      <div class="mb-3 mt-3">
+        <h1>Rechercher un chef</h1>
+        <label for="search" class="form-label">Enter your specialty</label>
+        <input type="text" class="form-control" id="specialty" placeholder="Enter your specialty" name="specialty">
+        <label for="search class form-label">Enter your postal city</label>
+        <input type="text" class="form-control" id="city" placeholder="Enter your city" name="city">
+      </div>
+      <button type="submit" class="btn-primary">Search</button>
+    </form>
+
+    <div id="map"></div>
+  </section>
+</main>
+
+
+<footer>
+  <p>&copy; 2025 Chef à Domicile – Tous droits réservés</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/our_chefs.js"></script>
+<script src="js/leaflet.js"></script>
+<script src="js/map.js"></script>
+</body>
+</html>
