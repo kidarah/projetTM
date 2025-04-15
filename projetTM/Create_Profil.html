@@ -1,231 +1,193 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Profil du Chef</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="create_profil.css" />
-  <link rel="stylesheet" href="custom_upload.css" />  
+  <meta charset="UTF-8">
+  <title>Chef Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="create_profil.css">
+  <link rel="stylesheet" href="custom_upload.css">
 </head>
 <body>
 
-<div class="profile-card">
-  <div class="top-section">
-    <img id="chefPhoto" src="" alt="Chef" />
-    <div class="info">
-      <h2 id="chefNom">Chef Inconnu</h2>
-      <p id="chefSpecialite">Spécialité : inconnue</p>
+<div class="container profile-container shadow-lg">
+  <!-- Top Row -->
+  <div class="d-flex flex-wrap align-items-start justify-content-between gap-4">
+    <!-- Profile Picture -->
+    <div class="profile-pic">
+      <img id="chefPhoto" src="" alt="Profile Picture">
     </div>
-    <div class="rating"><span>★</span> 4.8</div>
+
+    <!-- Info -->
+    <div class="flex-grow-1">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 id="chefNom" class="chef-name">Chef Name</h2>
+        <div class="rating">★ 4.8</div>
+      </div>
+      <p id="chefSpecialite" class="specialty">Specialty: Unknown</p>
+      <div id="chefBio" class="bio-box">No biography available yet.</div>
+    </div>
+
+    <!-- Edit Button -->
+    <div>
+      <button class="btn btn-warning text-dark" data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</button>
+    </div>
   </div>
 
-  <div class="bio" id="chefBio">Aucune biographie pour le moment</div>
-
-  <h3>Plats préparés</h3>
-  <div class="gallery-grid" id="galleryGrid"></div>
-  <div id="ajoutPlatBlock" class="text-center">
+  <!-- Upload Button -->
+  <div id="addDishBlock" class="mt-4 text-center">
     <label for="photoPlatFile" class="custum-file-upload">
       <div class="icon">
-        <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" 
-            stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M10 1C9.73478 1 9.48043
-                1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 
-                23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523
-                9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 
-                9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193
-                13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21
-                    20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 
-                    12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 
-                    23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" fill=""></path> 
-            </g></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 0 48 48" fill="#fed402">
+          <path d="M22.5 34.55h3V25h9.55v-3H25.5v-9.55h-3V22H13v3h9.5ZM9 42q-1.25 0-2.125-.875T6 39V9q0-1.25.875-2.125T9 6h13.1q.6 0 1.075.25T24.9 7.1l2.05 2.05H39q1.25 0 2.125.875T42 12v27q0 1.25-.875 2.125T39 42Zm0-3h30V12H25.15L21.95 8.8H9v30Z"/>
+        </svg>
       </div>
-      <div class="text">
-        <span>Ajouter un plat préparé</span>
-      </div>
-      <input id="photoPlatFile" type="file" accept="image/*" onchange="ajouterPlat()" />
+      <div class="text"><span>Add Dish</span></div>
+      <input id="photoPlatFile" type="file" accept="image/*" onchange="addDish()">
     </label>
-  </div>  
+  </div>
 
-  <div style="text-align: center; margin-top: 30px;">
-    <button class="btn btn-warning text-dark" data-bs-toggle="modal" data-bs-target="#editModal">Modifier le profil</button>
+  <!-- Gallery -->
+  <div class="gallery mt-4">
+    <h4 class="text-warning">Prepared Dishes</h4>
+    <div class="gallery-grid" id="galleryGrid"></div>
   </div>
 </div>
 
-<!-- MODALE -->
+<!-- Edit Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog">
     <div class="modal-content bg-dark text-white">
       <div class="modal-header">
-        <h5 class="modal-title" id="editModalLabel">Modifier mon profil</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        <h5 class="modal-title">Edit Profile</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body text-center">
-        <input class="form-control mb-2" id="editNom" placeholder="Nom complet" />
-        <input class="form-control mb-2" id="editSpecialite" placeholder="Spécialité" />
-        <textarea class="form-control mb-2" id="editBio" placeholder="Biographie..."></textarea>
-        <input type="file" class="form-control mb-2" id="photoUpload" accept="image/*" />
-        <img id="photoPreview" src="" alt="Prévisualisation" style="margin-top:10px; width:100px; height:100px; object-fit:cover; border-radius: 50%; display:none;" />
+        <input class="form-control mb-2" id="editNom" placeholder="Name">
+        <input class="form-control mb-2" id="editSpecialite" placeholder="Specialty">
+        <textarea class="form-control mb-2" id="editBio" placeholder="Biography..."></textarea>
+        <input type="file" class="form-control mb-2" id="photoUpload" accept="image/*">
+        <img id="photoPreview" style="display:none; width:100px; height:100px; object-fit:cover; border-radius:50%; margin-top:10px;">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="resetPreview()">Annuler</button>
-        <button type="button" class="btn btn-warning text-dark" onclick="saveProfil()">Sauvegarder</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal" onclick="resetPreview()">Cancel</button>
+        <button class="btn btn-warning text-dark" onclick="saveProfile()">Save</button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+  if (!localStorage.getItem("chefs")) localStorage.setItem("chefs", JSON.stringify([]));
+  if (!localStorage.getItem("currentChef")) localStorage.setItem("currentChef", JSON.stringify({ email: "chef@example.com" }));
 
-  // Créer la "base" si elle n'existe pas encore
-  if (!localStorage.getItem("chefs")) {
-    localStorage.setItem("chefs", JSON.stringify([]));
-  }
-
-  // Simuler un chef connecté (à remplacer par ton système réel)
-  if (!localStorage.getItem("currentChef")) {
-    localStorage.setItem("currentChef", JSON.stringify({ email: "chef@yumchef.com" }));
-  }
-
-
-  function getChefProfil() {
-  const current = JSON.parse(localStorage.getItem("currentChef"));
-  const chefs = JSON.parse(localStorage.getItem("chefs")) || [];
-
-  let profil = chefs.find(c => c.email === current.email);
-
-    if (!profil) {
-        // Création d’un nouveau profil si inexistant
-        profil = {
+  function getChefProfile() {
+    const current = JSON.parse(localStorage.getItem("currentChef"));
+    const chefs = JSON.parse(localStorage.getItem("chefs")) || [];
+    let profile = chefs.find(c => c.email === current.email);
+    if (!profile) {
+      profile = {
         email: current.email,
-        nom: "Chef Inconnu",
-        specialite: "inconnue",
-        bio: "Aucune biographie pour le moment",
+        nom: "Unknown Chef",
+        specialite: "Unknown",
+        bio: "No biography available yet.",
         photo: "",
         plats: []
-        };
-        chefs.push(profil);
-        localStorage.setItem("chefs", JSON.stringify(chefs));
+      };
+      chefs.push(profile);
+      localStorage.setItem("chefs", JSON.stringify(chefs));
     }
-
-  return profil;
+    return profile;
   }
 
-  function renderProfil(profil) {
-  // Nom, spécialité, bio
-  document.getElementById("chefNom").innerText = profil.nom || "Chef Inconnu";
-  document.getElementById("chefSpecialite").innerText = "Spécialité : " + (profil.specialite || "inconnue");
-  document.getElementById("chefBio").innerText = profil.bio || "Aucune biographie pour le moment";
-
-  // Photo de profil
-  const photoEl = document.getElementById("chefPhoto");
-  photoEl.src = profil.photo || "https://source.unsplash.com/120x120/?chef";
-
-  // Galerie de plats
-  const gallery = document.getElementById("galleryGrid");
-  gallery.innerHTML = ""; // reset visuel
-
-    if (Array.isArray(profil.plats) && profil.plats.length > 0) {
-        profil.plats.forEach((imgSrc) => {
+  function renderProfile(profile) {
+    document.getElementById("chefNom").innerText = profile.nom;
+    document.getElementById("chefSpecialite").innerText = "Specialty: " + profile.specialite;
+    document.getElementById("chefBio").innerText = profile.bio;
+    document.getElementById("chefPhoto").src = profile.photo || "https://source.unsplash.com/120x120/?chef";
+    const gallery = document.getElementById("galleryGrid");
+    gallery.innerHTML = "";
+    if (profile.plats?.length > 0) {
+      profile.plats.forEach(src => {
         const img = document.createElement("img");
-        img.src = imgSrc;
-        img.alt = "Plat préparé";
+        img.src = src;
         img.classList.add("gallery-img");
         gallery.appendChild(img);
-        });
+      });
     } else {
-        gallery.innerHTML = "<p style='color:#aaa; font-size: 14px;'>Aucun plat ajouté pour le moment.</p>";
+      gallery.innerHTML = "<p class='text-muted'>No dish uploaded yet.</p>";
     }
   }
 
-
-  function ajouterPlat() {
-  const fileInput = document.getElementById("photoPlatFile");
-  const file = fileInput.files[0];
-    if (!file) return;
-
-  const current = JSON.parse(localStorage.getItem("currentChef"));
-  const chefs = JSON.parse(localStorage.getItem("chefs")) || [];
-  const index = chefs.findIndex(c => c.email === current.email);
-
-  const reader = new FileReader();
-    reader.onload = function (e) {
-        chefs[index].plats = chefs[index].plats || [];
-        chefs[index].plats.push(e.target.result);
-        localStorage.setItem("chefs", JSON.stringify(chefs));
-        renderProfil(chefs[index]);
-        fileInput.value = "";
-
-        // Ajout feedback visuel
-        const gallery = document.getElementById("galleryGrid");
-        gallery.classList.add("added");
-        setTimeout(() => gallery.classList.remove("added"), 1000);
+  function saveProfile() {
+    const current = JSON.parse(localStorage.getItem("currentChef"));
+    const chefs = JSON.parse(localStorage.getItem("chefs"));
+    const index = chefs.findIndex(c => c.email === current.email);
+    const updated = {
+      ...chefs[index],
+      nom: document.getElementById("editNom").value,
+      specialite: document.getElementById("editSpecialite").value,
+      bio: document.getElementById("editBio").value
     };
-  reader.readAsDataURL(file);
+    const fileInput = document.getElementById("photoUpload");
+    if (fileInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        updated.photo = e.target.result;
+        chefs[index] = updated;
+        localStorage.setItem("chefs", JSON.stringify(chefs));
+        renderProfile(updated);
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    } else {
+      chefs[index] = updated;
+      localStorage.setItem("chefs", JSON.stringify(chefs));
+      renderProfile(updated);
+    }
+    bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
   }
-
 
   function resetPreview() {
     document.getElementById("photoUpload").value = "";
     document.getElementById("photoPreview").style.display = "none";
   }
 
-  function saveProfil() {
-  const current = JSON.parse(localStorage.getItem("currentChef"));
-  const chefs = JSON.parse(localStorage.getItem("chefs")) || [];
-  const index = chefs.findIndex(c => c.email === current.email);
-
-  const updated = {
-    ...chefs[index],
-    email: current.email,
-    nom: document.getElementById("editNom").value,
-    specialite: document.getElementById("editSpecialite").value,
-    bio: document.getElementById("editBio").value,
-  };
-
-  const fileInput = document.getElementById("photoUpload");
-    if (fileInput.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-        updated.photo = e.target.result;
-        chefs[index] = updated;
-        localStorage.setItem("chefs", JSON.stringify(chefs));
-        renderProfil(updated);
-        };
-        reader.readAsDataURL(fileInput.files[0]);
-    } else {
-        chefs[index] = updated;
-        localStorage.setItem("chefs", JSON.stringify(chefs));
-        renderProfil(updated);
-    }
-
-  bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
+  function addDish() {
+    const file = document.getElementById("photoPlatFile").files[0];
+    if (!file) return;
+    const current = JSON.parse(localStorage.getItem("currentChef"));
+    const chefs = JSON.parse(localStorage.getItem("chefs"));
+    const index = chefs.findIndex(c => c.email === current.email);
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      chefs[index].plats.push(e.target.result);
+      localStorage.setItem("chefs", JSON.stringify(chefs));
+      renderProfile(chefs[index]);
+    };
+    reader.readAsDataURL(file);
   }
 
-  // Ouvrir la modale = charger les données + afficher le bloc d’ajout de plat
-  document.getElementById("editModal").addEventListener("show.bs.modal", function () {
-    const profil = getProfil();
-    document.getElementById("editNom").value = profil.nom;
-    document.getElementById("editSpecialite").value = profil.specialite;
-    document.getElementById("editBio").value = profil.bio;
-
+  document.getElementById("editModal").addEventListener("show.bs.modal", () => {
+    const profile = getChefProfile();
+    document.getElementById("editNom").value = profile.nom;
+    document.getElementById("editSpecialite").value = profile.specialite;
+    document.getElementById("editBio").value = profile.bio;
     const preview = document.getElementById("photoPreview");
-    if (profil.photo) {
-      preview.src = profil.photo;
+    if (profile.photo) {
+      preview.src = profile.photo;
       preview.style.display = "block";
     } else {
       preview.style.display = "none";
     }
-
-    document.getElementById("ajoutPlatBlock").style.display = "flex";
   });
 
-  // Charger le profil à l’ouverture
-  renderProfil(getChefProfil());
+  renderProfile(getChefProfile());
 </script>
 
 </body>
 </html>
+
+
 
