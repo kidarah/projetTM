@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="reservation.css">
+
+    <link rel="stylesheet" href="connexion.css">
 </head>
 <body>
-    <form class="form">
+ 
+    <form class="form" method="post" action="backend/login.php">
         <p class="title">Login</p>
         <p class="message">Welcome back! Please login to your account.</p>
         
         <label>
-            <input class="input" type="email" placeholder="" required>
+            <input class="input" type="email" placeholder="" name ="email" required>
             <span>Email</span>
         </label>
         
         <label>
-            <input class="input" type="password" placeholder="" required>
+            <input class="input" type="password" placeholder="" name = "password" required>
             <span>Password</span>
         </label>
         
