@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Réserver un Chef</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="reservation.css" />
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="FrontView.html">YumChef</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="Nos_Chefs.html">Nos chefs</a></li>
+        <li class="nav-item"><a class="nav-link active" href="Reservation.html">Réserver</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="wrapper">
+  
+    <form class="form" id="reservationForm" style="margin-top: 100px;">
+    <p class="title">Réservation</p>
+    <p class="message">Remplissez les informations pour réserver votre chef</p>
+
+    <label>
+        <select class="input" id="chefSelect" required>
+        <option value="">-- Choisissez un chef --</option>
+        <option value="Chef Antoine">Chef Antoine</option>
+        <option value="Chef Lila">Chef Lila</option>
+        </select>
+        <span>Chef</span>
+    </label>
+
+    <label>
+        <input class="input" type="date" id="date" placeholder=" " required>
+        <span>Date</span>
+    </label>
+
+    <label>
+        <input class="input" type="time" id="heure" placeholder=" " required>
+        <span>Heure</span>
+    </label>
+
+    <label>
+        <input class="input" type="text" id="nom" placeholder=" " required>
+        <span>Votre nom</span>
+    </label>
+
+    <label>
+        <input class="input" type="email" id="email" placeholder=" " required>
+        <span>Email</span>
+    </label>
+
+    <label>
+        <select class="input" id="paiement" placeholder=" " required>
+        <option value="">-- Méthode de paiement --</option>
+        <option value="Carte Bancaire">Carte Bancaire</option>
+        <option value="PayPal">PayPal</option>
+        </select>
+        <span>Paiement</span>
+    </label>
+
+    <button class="submit" type="submit">Confirmer la réservation</button>
+    </form>
+
+    <footer class="mt-5">
+    <p>&copy; 2025 Chef à Domicile – Tous droits réservés</p>
+    </footer>
+
+</div>
+
+<script src="js/Checkout.js"></script>
+</body>
+</html>

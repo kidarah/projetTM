@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="connexion.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="backend/register.js"></script>
+
+</head>
+<body>
+    <form class="form" method="POST">
+        <p class="title">Register</p>
+        <p class="message">Signup now and get full access to our app.</p>
+
+        <!-- Radio buttons for user type -->
+        <div>
+            <label>
+                <input type="radio" name="userType" value="chef" >
+                Chef
+            </label>
+            <label>
+                <input type="radio" name="userType" value="client" >
+                Client
+            </label>
+            <span id="userTypeErrors" style="color: red;"></span>
+        </div>
+        
+        <div class="flex">
+            <label>
+                <input name="firstname" class="input" type="text" placeholder="" required>
+                <span>Firstname</span>
+            </label>
+            <span id="firstnameErrors" style="color: red;"></span>
+    
+            <label>
+                <input name="lastname" class="input" type="text" placeholder="" required>
+                <span>Lastname</span>
+            </label>
+            <span id="lastnameErrors" style="color: red;"></span>
+        </div>
+                
+        <label>
+            <input name="email" class="input" type="email" placeholder="" required>
+            <span>Email</span>
+        </label>
+        <span id="emailErrors" style="color: red;"></span>
+            
+        <label>
+            <input name="password" class="input" type="password" placeholder="" required>
+            <span>Password</span>
+        </label>
+        <span id="passwordErrors" style="color: red;"></span>
+
+        <label>
+            <input name="passwordC" class="input" type="password" placeholder="" required>
+            <span>Confirm password</span>
+        </label>
+        <span id="confirm_passwordErrors" style="color: red;"></span>
+        
+        <button class="submit">Submit</button>
+        <p class="signin">Already have an account? <a href="connexion.html">Signin</a></p>
+    </form>
+</body>
+</html>
