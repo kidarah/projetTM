@@ -1,0 +1,50 @@
+#navbody {
+    width: 300px;
+    height: 60px;
+    background-color: rgb(118, 118, 118);
+    border-radius: 40px;
+    box-shadow: 0px 10px 15px rgba(255, 255, 255, 0.041);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left: 30%;
+  }
+  
+  .ul {
+    list-style: none;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+  
+  .ul .li {
+    display: inline-block;
+  }
+  
+  .radio {
+    display: none;
+  }
+  
+  .svg {
+    width: 70px;
+    height: 70px;
+    opacity: 80%;
+    cursor: pointer;
+    padding: 13px 20px;
+    transition: 0.2s;
+  }
+  
+  .ul .li .svg:hover {
+    transition: 0.1s;
+    color: #ffe14d;
+    position: relative;
+    margin-top: -4px;
+    opacity: 100%;
+  }
+  
+  .radio:checked + label .li .svg {
+    color: #ffe14d;
+    fill-rule: evenodd;
+  }
