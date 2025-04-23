@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 body {
-  font-family: 'Georgia', 'Times New Roman', Times, serif;
+  font-family: 'Patua One', serif;
   background-color: #0a0a0a;
   color: #ffffff;
   margin: 0;
@@ -27,7 +27,7 @@ nav.navbar {
 .search-box h1 {
   font-size: 2.2rem;
   font-weight: bold;
-  color: #fed402;
+  color: #ffea00;
   margin-bottom: 10px;
 }
 
