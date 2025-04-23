@@ -8,21 +8,38 @@ body {
     padding: 0;
 }
 
-/* Main section */
+/* Main section */ /*
 .main {
-    background-image: url('img/food2_main.avif');
-    background-size: cover;
-    background-position: center;
-    background-color: rgba(0, 0, 0, 0.65);
-    background-blend-mode: overlay;
+    background-image: url('img/FrontView.mp4');
+    
+    
+    
+    
+    
+    color: #ffffff;
+}*/
+
+.main {
+    background-position: center;    
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 20px;
-    color: #ffffff;
+    position: relative;
+    overflow: hidden;
 }
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.4);
+}  
 
 .main_content h1 {
     text-transform: uppercase;
@@ -39,7 +56,7 @@ body {
 
 .btn_reserver {
     display: inline-block;
-    background-color: #fed402;
+    background-color: #ffcc00;
     color: #121212;
     padding: 10px 20px;
     font-size: 1rem;
@@ -83,7 +100,7 @@ body {
 }
 
 .services h4 {
-    color: #fed402;
+    color: #ffcc00;
     font-weight: bold;
     margin-top: 15px;
     font-size: 1.2rem;
@@ -128,17 +145,17 @@ footer p {
 
 .heading {
     font-weight: 700;
-    color: #fed402;
+    color: #ffcc00;
 }
 
 .hour {
     margin-top: 1px;
-    color: #fed402;
+    color: #ffcc00;
     font-size: 12px;
 }
 
 .ratings i {
-    color: #fed402;
+    color: #ffcc00;
 }
 
 .btn {
@@ -149,19 +166,19 @@ footer p {
 
 /* Override bouton Bootstrap primaire */
 .btn-primary {
-    background-color: #fed402;
+    background-color: #ffcc00;
     border: none;
     color: #121212;
 }
 
 .btn-primary:hover {
-    background-color: #e4c002;
+    background-color: #ffcc00;
     color: black;
 }
 
 /* Bouton success custom jaune */
 .btn-success {
-    background-color: #fed402 !important;
+    background-color: #ffcc00 !important;
     border: none !important;
     color: #121212 !important;
     font-weight: bold;
@@ -169,13 +186,13 @@ footer p {
 }
 
 .btn-success:hover {
-    background-color: #e4c002 !important;
+    background-color: #ffcc00 !important;
     color: #000 !important;
 }
 
 /* Optionnel : bouton jaune réutilisable */
 .btn-yellow {
-    background-color: #fed402;
+    background-color: #ffcc00;
     border: none;
     color: #121212;
     font-weight: bold;
@@ -183,13 +200,13 @@ footer p {
 }
 
 .btn-yellow:hover {
-    background-color: #e4c002;
+    background-color: #ffcc00;
     color: black;
 }
 
 /* Ligne entre sections */
 .line-color {
-    background-color: #fed402;
+    background-color: #ffcc00;
     height: 3px;
     border: none;
 }
@@ -198,11 +215,11 @@ footer p {
 .filter-chefs {
     background-color: #121212;
     padding: 40px 20px;
-    border-top: 2px solid #fed402;
+    border-top: 2px solid #ffcc00;
 }
 
 .filter-chefs h1 {
-    color: #fed402;
+    color: #ffcc00;
     margin-bottom: 20px;
 }
 
@@ -212,7 +229,7 @@ footer p {
 
 .filter-chefs input {
     background-color: #0f0f0f;
-    border: 1px solid #fed402;
+    border: 1px solid #ffcc00;
     color: #ffffff;
 }
 
@@ -221,7 +238,7 @@ footer p {
 }
 
 .filter-chefs .btn-primary {
-    background-color: #fed402;
+    background-color: #ffcc00;
     border: none;
     color: #121212;
     font-weight: bold;
@@ -229,7 +246,7 @@ footer p {
 }
 
 .filter-chefs .btn-primary:hover {
-    background-color: #e4c002;
+    background-color: #ffcc00;
 }
 
 /* BestChefs section */
@@ -241,13 +258,13 @@ footer p {
 
 .BestChefs h2 {
     font-weight: bold;
-    color: #fed402;
+    color: #ffcc00;
     margin-bottom: 40px;
 }
 
 /* Responsive image dans la carte */
 .image img {
-    border: 2px solid #fed402;
+    border: 2px solid #ffcc00;
     padding: 2px;
 }
 
