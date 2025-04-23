@@ -49,7 +49,7 @@ if (!empty($errors)) {
 }
 
 // Connexion à la base de données
-$conn = new mysqli("localhost", "root", "", "LocationChef");
+$conn = new mysqli("localhost", "admin1", "Dalulou123", "LocationChef");
 
 // Vérifier la connexion
 if ($conn->connect_error) {

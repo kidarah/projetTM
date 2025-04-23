@@ -7,4 +7,3 @@ ToDo list projet TM ;
 - Ajouter système de session
 - Relier contact a un mail service client
 - Améliorer logo (optionnel)
-- 

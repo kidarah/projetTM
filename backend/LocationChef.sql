@@ -1,7 +1,5 @@
 
--- Base de données LocationChef
-CREATE DATABASE IF NOT EXISTS LocationChef;
-USE LocationChef;
+
 
 -- Table des utilisateurs
 CREATE TABLE IF NOT EXISTS Utilisateurs (
