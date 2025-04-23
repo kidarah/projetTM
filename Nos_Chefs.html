@@ -5,16 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nos Chefs – Chef à Domicile</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="nosChefs.css">
   <link rel="stylesheet" href="leaflet.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-
-
 </head>
 <body>
-
+  <!-- Navigation -->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top ">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
@@ -42,46 +40,68 @@
     </div>
   </nav>
 
-<main>
-
-  <!-- Section de recherche des chefs (placée au-dessus) -->
-  
-  <section class="filter-chefs">
-    <h2 class="text-center mb-5">Découvrez nos chefs partenaires</h2>
-    <form id="filter-form" method="get">
-      <div class="mb-3 mt-3">
-        <h1>Search a chef</h1>
-        <label for="specialty" class="form-label">Enter your specialty</label>
-        <input type="text" class="form-control" id="specialty" placeholder="Enter your specialty" name="specialty">
-        <label for="city" class="form-label">Enter your postal city</label>
-        <input type="text" class="form-control" id="city" placeholder="Enter your city" name="city">
+  <!-- Contenu principal -->
+  <main class="mt-5 pt-5">
+    <section class="container my-5">
+      <div class="text-center mb-4">
+        <h1 class="fw-bold text-warning">Comparez et réservez facilement un chef à domicile</h1>
+        <p class="text-light">Découvrez le chef parfait pour votre occasion spéciale</p>
       </div>
-      <button type="submit" class="btn btn-primary">Search</button>
-    </form>
-  </section>
 
-  <!-- Section des chefs à afficher -->
-  <section class="BestChefs">
-    <div class="container my-5">
-      
-      <div id="chefs-filter" class="row g-4 position-relative">
-        <!-- Profils affichés ici -->
-      </div>
-      
-    </div>
-  </section>
+      <form id="filter-form" method="get" class="row g-3 justify-content-center mb-5">
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="📍 Ville (ex: Bruxelles)" id="city" name="city" />
+        </div>
+        <div class="col-md-3">
+          <select id="specialty" name="specialty" class="form-select">
+            <option value="">Type de cuisine</option>
+            <option>Française</option>
+            <option>Italienne</option>
+            <option>Asiatique</option>
+            <option>Végétarienne</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <input type="date" class="form-control" name="date" />
+        </div>
+        <div class="col-md-2">
+          <input type="number" class="form-control" placeholder="👥 Nombre de convives" min="1" name="guests" />
+        </div>
+        <div class="col-md-2 d-grid">
+          <button class="btn btn-primary">Rechercher</button>
+        </div>
+      </form>
 
-</main>
+      <section class="BestChefs">
+        <div class="container">
+          <div id="chefs-container" class="row g-4 position-relative">
+            <!-- Profils affichés ici -->
+          </div>
+        </div>
+      </section>
 
-<footer>
-  <p>&copy; 2025 Chef à Domicile – Tous droits réservés</p>
-</footer>
+      <!-- Section des chefs à afficher -->
+      <section class="all-chefs">
+        <div class="container">
+          <div id="chefs-filter" class="row g-4 position-relative">
+            <!-- Profils affichés ici -->
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/our_chefs.js"></script>
-<script src="js/filter_chef.js"></script>
-<script src="js/leaflet.js"></script>
-<script src="js/map.js"></script>
+  <!-- Pied de page -->
+  <footer class="bg-dark text-light text-center py-3">
+    <p class="mb-0">&copy; 2025 Chef à Domicile – Tous droits réservés</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/our_chefs.js"></script>
+  <script src="js/filter_chef.js"></script>
+  <script src="js/leaflet.js"></script>
+  <script src="js/map.js"></script>
 </body>
 </html>
