@@ -10,7 +10,16 @@ function connectToDatabase() {
     if (!$conn) {
         die('Erreur de connexion : ' . mysqli_connect_error());
     }
+    else{
+        echo "Connexion réussie à la base de données.";
+    }
 
+    
     return $conn;
+
+    
 }
+
+echo "debut";
+connectToDatabase();
 ?>

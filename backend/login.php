@@ -1,24 +1,11 @@
 <?php
 session_start();
+$conn = new mysqli("localhost", "u716777407_admin1", "Dalulou123", "u716777407_LocationChef");
 
-// Fonction de connexion à la base de données
-function connectToDatabase() {
-    $host = 'localhost';
-    $user = 'u716777407_admin1';
-    $password = 'Dalulou123'; 
-    $database = 'u716777407_LocationChef';
-
-    $conn = mysqli_connect($host, $user, $password, $database);
-
-    if (!$conn) {
-        die("Erreur de connexion : " . mysqli_connect_error());
-    }
-
-    return $conn;
+// Test de la connexion à la base de données
+if ($conn->connect_error) {
+    die("Erreur de connexion : " . $conn->connect_error);
 }
-
-// Connexion à la base de données
-$conn = connectToDatabase();
 
 // Traitement du formulaire de connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -29,19 +16,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$stmt) {
         die("Erreur de préparation : " . $conn->error);
     }
-
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
 
-    if ($user && password_verify($password, $user['mot_de_passe'])) {
+    if ($user && password_verify($password, $user['mot_de_passe'])) { // Vérification sécurisée
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['role'] = $user['role'];
-        header("Location: ../FrontView.html");
+        header("Location: ../index.html");
         exit();
     } else {
-        header("Location: connexion.html"); // Échec → retour à la page de connexion
+        header("Location: connexion.html"); // Retour à la page de connexion 
         exit();
     }
 }

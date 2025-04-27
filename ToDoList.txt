@@ -4,6 +4,5 @@ ToDo list projet TM ;
 - Lister les chefs 
 - Finaliser les profils des chefs 
 - Changer le design global
-- Ajouter système de session
 - Relier contact a un mail service client
 - Améliorer logo (optionnel)
