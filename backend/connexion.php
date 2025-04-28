@@ -20,6 +20,4 @@ function connectToDatabase() {
     
 }
 
-echo "debut";
-connectToDatabase();
 ?>

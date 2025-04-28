@@ -1,0 +1,151 @@
+/* Import de la police élégante */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: url('img/food_main.avif') no-repeat center center fixed;
+    background-size: cover;
+    backdrop-filter: blur(4px);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Wrapper */
+.wrapper {
+    margin-top: 100px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+/* Carte Formulaire */
+.form {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 40px 30px;
+    margin: 20px auto;
+    color: #fff;
+    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+}
+
+.form:hover {
+    box-shadow: 0 8px 32px 0 rgba(241, 196, 15, 0.5);
+}
+
+.title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #f1c40f;
+}
+
+.message {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+/* Champs */
+label {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.input, textarea.input {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #f1c40f;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input::placeholder {
+    color: transparent;
+}
+
+.input:focus, textarea.input:focus {
+    background: rgba(241, 196, 15, 0.1);
+    border-color: #f1c40f;
+}
+
+label span {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0 5px;
+    color: white;
+    font-size: 0.9rem;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input:focus + span,
+.input:not(:placeholder-shown) + span {
+    top: -10px;
+    left: 10px;
+    font-size: 0.7rem;
+    background: #000;
+    
+}
+
+/* Bouton */
+.submit {
+    width: 100%;
+    padding: 15px;
+    background: #d4ac0d;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #000;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.submit:hover {
+    background: linear-gradient(135deg, #d4ac0d, #e67e22);
+    color: #fff;
+}
+
+.submit:active {
+    transform: scale(0.98);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #aaa;
+    font-size: 0.9rem;
+    padding: 20px 0;
+    background: rgba(0, 0, 0, 0.7);
+   
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form {
+        padding: 30px 20px;
+    }
+
+    body {
+        background-attachment: scroll;
+    }
+}
