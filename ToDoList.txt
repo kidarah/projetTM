@@ -3,6 +3,4 @@ ToDo list projet TM ;
 - Reserver/paiement finalisé
 - Lister les chefs 
 - Finaliser les profils des chefs 
-- Changer le design global
-- Relier contact a un mail service client
-- Améliorer logo (optionnel)
+- Améliorer logo (optionnel) changer typo
