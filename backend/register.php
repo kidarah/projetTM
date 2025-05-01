@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 // Initialiser un tableau pour stocker les erreurs
 $errors = [];
 
-
+// Vérifier le type d'utilisateur (Chef ou Client)
 // Vérifications formulaire
 if (!isset($_POST['userType']) || ($_POST['userType'] !== 'chef' && $_POST['userType'] !== 'client')) {
     $errors['userTypeErrors'] = 'Veuillez sélectionner un type d’utilisateur (Chef ou Client).';
@@ -49,7 +49,7 @@ if (!empty($errors)) {
 }
 
 // Connexion à la base de données
-$conn = new mysqli("localhost", "admin1", "Dalulou123", "LocationChef");
+$conn = new mysqli("localhost", "u716777407_admin1", "Dalulou123", "u716777407_LocationChef");
 
 // Vérifier la connexion
 if ($conn->connect_error) {

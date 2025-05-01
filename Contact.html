@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <title>Contact & Service Client</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="reservation.css">
+  <link rel="stylesheet" href="contact.css">
 </head>
 <body>
 
@@ -42,19 +41,19 @@
     <p class="title">Contact & Service Client</p>
     <p class="message">Une question ? Une demande particulière ? Contactez-nous !</p>
 
-    <form id="contactForm">
+    <form id="contactForm" method="POST" action="backend/mail.php">
       <label>
-        <input class="input" type="text" id="nom" placeholder=" " required>
+        <input class="input" type="text" id="nom" placeholder=" " name = "nom" required>
         <span>Votre nom</span>
       </label>
 
       <label>
-        <input class="input" type="email" id="email" placeholder=" " required>
+        <input class="input" type="email" id="email" placeholder=" " name ="email" required>
         <span>Votre email</span>
       </label>
 
       <label>
-        <textarea class="input" id="message" placeholder=" " rows="4" required></textarea>
+        <textarea class="input" id="message" placeholder=" " rows="4" name ="message" required></textarea>
         <span>Votre message</span>
       </label>
 
@@ -65,7 +64,7 @@
   <div class="form" style="margin-top: 40px; max-width: 500px;">
     <p class="title">Nos coordonnées</p>
     <p class="message" style="text-align: center;">
-      ✉️ Email : support@yumchef.com<br>
+      ✉️ Email : yumchefcontact@gmail.com<br>
       📞 Téléphone : +33 1 23 45 67 89<br>
       🕓 Horaires : Lun - Sam / 9h - 18h
     </p>
@@ -76,14 +75,6 @@
   <p>&copy; 2025 Chef à Domicile – Tous droits réservés</p>
   </footer>
 </div>
-
-<script>
-  document.getElementById("contactForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    alert("Merci pour votre message ! Nous vous répondrons rapidement.");
-    this.reset();
-  });
-</script>
 
 </body>
 </html>

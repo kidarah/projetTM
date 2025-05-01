@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = new mysqli("localhost", "root", "", "locationChef");
+$conn = new mysqli("localhost", "u716777407_admin1", "Dalulou123", "u716777407_LocationChef");
 
 // Test de la connexion à la base de données
 if ($conn->connect_error) {
@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT id, role, mot_de_passe FROM utilisateurs WHERE email = ?");
+    $stmt = $conn->prepare("SELECT id, role, mot_de_passe FROM Utilisateurs WHERE email = ?");
     if (!$stmt) {
         die("Erreur de préparation : " . $conn->error);
     }
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user && password_verify($password, $user['mot_de_passe'])) { // Vérification sécurisée
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['role'] = $user['role'];
-        header("Location: ../FrontView.html");
+        header("Location: ../index.html");
         exit();
     } else {
         header("Location: connexion.html"); // Retour à la page de connexion 
