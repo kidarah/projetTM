@@ -1,119 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Chef Profile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="create_profil.css">
-  <link rel="stylesheet" href="custom_upload.css">
-  <link rel="stylesheet" href="custom_tab.css">
-  <script src="js/ButtonManagement.js"></script>
 </head>
-
 <body>
-  <div class="container profile-container shadow-lg">
-    <!-- Top Row -->
-    <div class="d-flex flex-wrap align-items-start justify-content-between gap-4">
-      <!-- Profile Picture -->
-      <div class="profile-pic">
-        <img id="chefPhoto" src="" alt="Profile Picture">
-      </div>
 
-      <!-- Info -->
-      <div class="flex-grow-1">
-        <div class="d-flex justify-content-between align-items-center">
-          <h2 id="chefNom" class="chef-name">Chef Name</h2>
-          <div class="rating">★ 4.8</div>
-        </div>
-        <p id="chefSpecialite" class="specialty">Specialty: Unknown</p>
-        <div id="chefBio" class="bio-box">No biography available yet.</div>
-      </div>
+<div class="profile-container">
 
-      <!-- Edit Button -->
-      <div>
-        <button class="btn btn-warning text-dark" data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</button>
-      </div>
+  <!-- Header -->
+  <div class="profile-header">
+    <div class="profile-image">
+      <img id="chefPhoto" src="" alt="Chef profile picture">
     </div>
-
-    <!-- Add Dish -->
-    <div id="addDishBlock" class="mt-4 text-center">
-      <label for="photoPlatFile" class="custum-file-upload">
-        <div class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 0 48 48" fill="#fed402">
-            <path d="M22.5 34.55h3V25h9.55v-3H25.5v-9.55h-3V22H13v3h9.5ZM9 42q-1.25 0-2.125-.875T6 39V9q0-1.25.875-2.125T9 6h13.1q.6 0 1.075.25T24.9 7.1l2.05 2.05H39q1.25 0 2.125.875T42 12v27q0 1.25-.875 2.125T39 42Zm0-3h30V12H25.15L21.95 8.8H9v30Z" />
-          </svg>
-        </div>
-        <div class="text"><span>Add Dish</span></div>
-        <input id="photoPlatFile" type="file" accept="image/*" onchange="addDish()">
-      </label>
+    <div class="profile-details">
+      <h1 id="chefNom">Chef Name</h1>
+      <p id="chefSpecialite">Specialty: Unknown</p>
+      <div class="rating">★ 4.8</div>
     </div>
-
-    <!-- Gallery of Prepared Dishes -->
-    <div class="gallery mt-4">
-      <h4 class="text-warning">Prepared Dishes</h4>
-      <div class="gallery-grid" id="galleryGrid"></div>
-    </div> 
-
-    <!-- Navigation Tab -->
-    <div id="navbody">
-      <form action="#">
-        <ul class="ul">
-          <input checked="" name="rad" class="radio" id="choose1" type="radio" />
-          <label for="choose1">
-            <li class="li">
-              <svg viewBox="0 0 24 24" fill="none" height="24" width="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg w-6 h-6 text-gray-800 dark:text-white">
-                <path d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor"></path>
-              </svg>
-            </li>
-          </label>
-          <input class="radio" name="rad" id="choose2" type="radio" />
-          <label for="choose2">
-            <li class="li">
-              <svg viewBox="0 0 24 24" fill="none" height="24" width="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg w-6 h-6 text-gray-800 dark:text-white">
-                <path d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" stroke-width="2" stroke-linecap="round" stroke="currentColor"></path>
-              </svg>
-            </li>
-          </label>
-        </ul>
-      </form>
-    </div>
+    <div class="edit-button-absolute d-none" id="editBtnWrapper">
+      <button id="editBtn" class="edit-btn" onclick="toggleEdit()">Edit Profile</button>
+    </div>    
   </div>
 
-  <!-- Edit Modal -->
-  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content bg-dark text-white">
-        <div class="modal-header">
-          <h5 class="modal-title">Edit Profile</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body text-center">
-          <input class="form-control mb-2" id="editNom" placeholder="Name">
-          <input class="form-control mb-2" id="editSpecialite" placeholder="Specialty">
-          <textarea class="form-control mb-2" id="editBio" placeholder="Biography..."></textarea>
-          <input type="file" class="form-control mb-2" id="photoUpload" accept="image/*">
-          <img id="photoPreview" style="display:none; width:100px; height:100px; object-fit:cover; border-radius:50%; margin-top:10px;">
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal" onclick="resetPreview()">Cancel</button>
-          <button class="btn btn-warning text-dark" onclick="saveProfile()">Save</button>
-        </div>
-      </div>
+  <!-- Description -->
+  <section class="profile-section">
+    <h2>About</h2>
+    <p id="chefBio">No biography available yet.</p>
+  </section>
+
+  <!-- Gallery -->
+  <section class="profile-section">
+    <h2>Dishes Gallery</h2>
+    <div class="gallery-grid" id="galleryGrid"></div>
+    <label for="photoPlatFile" class="upload-box d-none" id="uploadLabel">
+      <span>➕ Add Dish</span>
+      <input id="photoPlatFile" type="file" accept="image/*" onchange="addDish()" />
+    </label>
+  </section>
+
+  <!-- Reviews -->
+  <section class="profile-section">
+    <h2>Reviews</h2>
+    <div id="reviewsContainer" class="reviews">
+      <p class="empty-reviews">No reviews yet.</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- Edit Modal -->
+<div class="modal hidden" id="editModal">
+  <div class="modal-content">
+    <h3>Edit Profile</h3>
+    <input type="text" id="editNom" placeholder="Name">
+    <input type="text" id="editSpecialite" placeholder="Specialty">
+    <textarea id="editBio" placeholder="Biography..."></textarea>
+    <input type="file" id="photoUpload" accept="image/*">
+    <div class="modal-actions">
+      <button onclick="saveProfile()">Save</button>
+      <button onclick="toggleEdit()">Cancel</button>
     </div>
   </div>
+</div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/profile.js"></script>
-  <script src="js/menus.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      loadProfile();
-      loadMenus();
+<script>
+  function toggleEdit() {
+    document.getElementById("editModal").classList.toggle("hidden");
+    const profile = getChefProfile();
+    document.getElementById("editNom").value = profile.nom;
+    document.getElementById("editSpecialite").value = profile.specialite;
+    document.getElementById("editBio").value = profile.bio;
+  }
+
+  function saveProfile() {
+    const current = JSON.parse(localStorage.getItem("currentChef"));
+    const chefs = JSON.parse(localStorage.getItem("chefs"));
+    const index = chefs.findIndex(c => c.email === current.email);
+    chefs[index].nom = document.getElementById("editNom").value;
+    chefs[index].specialite = document.getElementById("editSpecialite").value;
+    chefs[index].bio = document.getElementById("editBio").value;
+
+    const file = document.getElementById("photoUpload").files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        chefs[index].photo = e.target.result;
+        localStorage.setItem("chefs", JSON.stringify(chefs));
+        renderProfile(chefs[index]);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      localStorage.setItem("chefs", JSON.stringify(chefs));
+      renderProfile(chefs[index]);
+    }
+
+    toggleEdit();
+  }
+
+  function getChefProfile() {
+    const current = JSON.parse(localStorage.getItem("currentChef"));
+    const chefs = JSON.parse(localStorage.getItem("chefs")) || [];
+    return chefs.find(c => c.email === current.email);
+  }
+
+  function renderProfile(profile) {
+    document.getElementById("chefNom").innerText = profile.nom;
+    document.getElementById("chefSpecialite").innerText = "Specialty: " + profile.specialite;
+    document.getElementById("chefBio").innerText = profile.bio;
+    document.getElementById("chefPhoto").src = profile.photo || "https://source.unsplash.com/120x120/?chef";
+
+    const gallery = document.getElementById("galleryGrid");
+    gallery.innerHTML = "";
+    (profile.plats || []).forEach(src => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.classList.add("gallery-img");
+      gallery.appendChild(img);
     });
-  </script>
-</body>
+  }
 
+  function addDish() {
+    const file = document.getElementById("photoPlatFile").files[0];
+    if (!file) return;
+    const current = JSON.parse(localStorage.getItem("currentChef"));
+    const chefs = JSON.parse(localStorage.getItem("chefs"));
+    const index = chefs.findIndex(c => c.email === current.email);
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      chefs[index].plats = chefs[index].plats || [];
+      chefs[index].plats.push(e.target.result);
+      localStorage.setItem("chefs", JSON.stringify(chefs));
+      renderProfile(chefs[index]);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  const profile = getChefProfile();
+  renderProfile(profile);
+
+  if (profile.email === JSON.parse(localStorage.getItem("currentChef")).email) {
+    document.getElementById("editBtn").classList.remove("d-none");
+    document.getElementById("uploadLabel").classList.remove("d-none");
+  }
+</script>
+
+</body>
 </html>
