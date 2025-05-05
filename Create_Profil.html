@@ -78,29 +78,21 @@
   }
 
   function saveProfile() {
-    const current = JSON.parse(localStorage.getItem("currentChef"));
-    const chefs = JSON.parse(localStorage.getItem("chefs"));
-    const index = chefs.findIndex(c => c.email === current.email);
-    chefs[index].nom = document.getElementById("editNom").value;
-    chefs[index].specialite = document.getElementById("editSpecialite").value;
-    chefs[index].bio = document.getElementById("editBio").value;
+  const formData = new FormData();
+  formData.append("nom", document.getElementById("editNom").value);
+  formData.append("specialite", document.getElementById("editSpecialite").value);
+  formData.append("bio", document.getElementById("editBio").value);
+  formData.append("photo", document.getElementById("photoUpload").files[0]);
 
-    const file = document.getElementById("photoUpload").files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        chefs[index].photo = e.target.result;
-        localStorage.setItem("chefs", JSON.stringify(chefs));
-        renderProfile(chefs[index]);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      localStorage.setItem("chefs", JSON.stringify(chefs));
-      renderProfile(chefs[index]);
-    }
+  fetch("update_chef.php", {
+    method: "POST",
+    body: formData
+  })
+  .then(response => response.text())
+  .then(message => console.log(message))
+  .catch(error => console.error("Erreur:", error));
+}
 
-    toggleEdit();
-  }
 
   function getChefProfile() {
     const current = JSON.parse(localStorage.getItem("currentChef"));
