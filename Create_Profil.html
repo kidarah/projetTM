@@ -16,11 +16,11 @@
       <img id="chefPhoto" src="" alt="Chef profile picture">
     </div>
     <div class="profile-details">
-      <h1 id="chefNom">Chef Name</h1>
-      <p id="chefSpecialite">Specialty: Unknown</p>
-      <div class="rating">★ 4.8</div>
+      <h1 id="chefNom"></h1>
+      <p id="chefSpecialite"></p>
+      <div class="rating" id="chefRating"></div>
     </div>
-    <div class="edit-button-absolute d-none" id="editBtnWrapper">
+    <div class="edit-button-absolute" id="editBtnWrapper">
       <button id="editBtn" class="edit-btn" onclick="toggleEdit()">Edit Profile</button>
     </div>    
   </div>
@@ -28,14 +28,14 @@
   <!-- Description -->
   <section class="profile-section">
     <h2>About</h2>
-    <p id="chefBio">No biography available yet.</p>
+    <p id="chefBio"></p>
   </section>
 
   <!-- Gallery -->
   <section class="profile-section">
     <h2>Dishes Gallery</h2>
     <div class="gallery-grid" id="galleryGrid"></div>
-    <label for="photoPlatFile" class="upload-box d-none" id="uploadLabel">
+    <label for="photoPlatFile" class="upload-box" id="uploadLabel">
       <span>➕ Add Dish</span>
       <input id="photoPlatFile" type="file" accept="image/*" onchange="addDish()" />
     </label>
@@ -44,9 +44,7 @@
   <!-- Reviews -->
   <section class="profile-section">
     <h2>Reviews</h2>
-    <div id="reviewsContainer" class="reviews">
-      <p class="empty-reviews">No reviews yet.</p>
-    </div>
+    <div id="reviewsContainer" class="reviews"></div>
   </section>
 
 </div>
@@ -65,6 +63,10 @@
     </div>
   </div>
 </div>
+
+<script src="js/profil_chef.js"></script>
+
+
 
 <script>
   function toggleEdit() {

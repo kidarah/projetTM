@@ -41,7 +41,7 @@ function renderChef(index) {
               </div>
               <div>
                 <button class="btn btn-outline-dark btn-sm px-2">+ follow</button>
-                <button class="btn btn-outline-dark btn-sm">See Profile</button>
+                <button class="btn btn-outline-dark btn-sm see-profile" data-id="${chef.id}">See Profile</button>
                 <button class="btn btn-outline-dark btn-sm"><i class="fa fa-comment-o"></i></button>
               </div>
             </div> 
@@ -55,6 +55,20 @@ function renderChef(index) {
       </div>
     `;
     container.append(card);
+    $(document).on('click', '.see-profile', function () {
+      const chefId = $(this).data('id');
+  
+      if (!chefId) {
+          console.error("Erreur : ID du chef non défini.");
+          return;
+      }
+  
+      console.log("Redirection vers le profil du chef avec ID :", chefId);
+      window.location.href = `../Create_Profil.html?id=${chefId}`;
+
+  });
+  
+  
   } else {
     // Desktop : afficher toutes les cartes
     chefsData.forEach((chef) => {
@@ -86,7 +100,7 @@ function renderChef(index) {
                 </div>
                 <div>
                   <button class="btn btn-outline-dark btn-sm px-2">+ follow</button>
-                  <button class="btn btn-outline-dark btn-sm">See Profile</button>
+                  <button class="btn btn-outline-dark btn-sm see-profile" data-id="${chef.id}">See Profile</button>
                   <button class="btn btn-outline-dark btn-sm"><i class="fa fa-comment-o"></i></button>
                 </div>
               </div> 
@@ -99,8 +113,23 @@ function renderChef(index) {
           </div>
         </div>
       `;
+     
       container.append(card);
     });
+    $(document).on('click', '.see-profile', function () {
+      const chefId = $(this).data('id');
+  
+      if (!chefId) {
+          console.error("Erreur : ID du chef non défini.");
+          return;
+      }
+  
+      console.log("Redirection vers le profil du chef avec ID :", chefId);
+     window.location.href = `../Create_Profil.html?id=${chefId}`;
+
+  });
+  
+  
   }
 }
 
