@@ -49,7 +49,7 @@ function renderChef(index) {
           <hr class="line-color">
           <h6>48 comments</h6>
           <div class="third mt-4">
-            <button class="btn btn-warning btn-block"><i class="fa fa-clock-o"></i> Book Now</button>
+            <button class="btn btn-warning btn-block book-now" data-chef-id="${chef.id}"><i class="fa fa-clock-o"></i> Book Now</button>
           </div>
         </div>
       </div>
@@ -108,7 +108,7 @@ function renderChef(index) {
             <hr class="line-color">
             <h6>48 comments</h6>
             <div class="third mt-4">
-              <button class="btn btn-warning btn-block"><i class="fa fa-clock-o"></i> Book Now</button>
+              <button class="btn btn-warning btn-block book-now" data-chef-id="${chef.id}"><i class="fa fa-clock-o"></i> Book Now</button>
             </div>
           </div>
         </div>
@@ -131,6 +131,12 @@ function renderChef(index) {
   
   
   }
+
+  // ajout id chef
+  $('.book-now').on('click', function () {
+    const chefId = $(this).data('chef-id');
+    window.location.href = `Reservation.html?chefId=${chefId}`;
+  });
 }
 
 function transitionChef(direction) {

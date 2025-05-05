@@ -1,6 +1,6 @@
 ToDo list projet TM ; 
 
-- Reserver/paiement finalisé
+- 
 - Lister les chefs 
 - Lier les profils, améliorer l'interface des profils affichés dans la recherche
 - Mettre la meme typo pourtout. (je crois que c'est 'Poppins', mais à vérifier)

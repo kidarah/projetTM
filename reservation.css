@@ -14,13 +14,10 @@ body {
 
 /* Centrage de la page avec wrapper */
 .wrapper {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding-top: 100px;
-    padding-bottom: 40px;
+    padding: 100px 0 40px;
 }
 
 /* ===== Formulaire principal ===== */
@@ -32,11 +29,10 @@ body {
     max-width: 480px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
     border: 1px solid #292929;
-    animation: fadeIn 0.8s ease;
 }
 
 /* ===== Titres ===== */
-.title {
+h2 {
     font-size: 28px;
     font-weight: 700;
     color: #fed402;
@@ -44,7 +40,7 @@ body {
     text-align: center;
 }
 
-.message {
+p {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
     text-align: center;
@@ -53,12 +49,14 @@ body {
 
 /* ===== Champs de formulaire stylisés ===== */
 label {
-    position: relative;
-    margin-bottom: 25px;
+    font-size: 14px;
+    color: #fed402;
+    margin-bottom: 8px;
     display: block;
 }
 
-.input {
+.form-control,
+.form-select {
     width: 100%;
     padding: 14px 12px;
     background-color: #1e1e1e;
@@ -69,35 +67,15 @@ label {
     transition: border 0.3s, box-shadow 0.3s;
 }
 
-.input:focus {
+.form-control:focus,
+.form-select:focus {
     border: 1px solid #fed402;
     box-shadow: 0 0 0 2px rgba(254, 212, 2, 0.3);
     outline: none;
 }
 
-/* ===== Labels flottants ===== */
-label span {
-    position: absolute;
-    left: 14px;
-    top: 14px;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 14px;
-    pointer-events: none;
-    transition: 0.3s ease;
-    background-color: #121212;
-    padding: 0 5px;
-}
-
-.input:focus + span,
-.input:not(:placeholder-shown) + span,
-.input:valid + span {
-    top: -10px;
-    font-size: 12px;
-    color: #fed402;
-}
-
 /* ===== Bouton principal ===== */
-.submit {
+.btn-primary {
     width: 100%;
     padding: 13px;
     background-color: #fed402;
@@ -106,47 +84,11 @@ label span {
     border-radius: 10px;
     font-weight: bold;
     font-size: 16px;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: transform 0.2s ease;
     cursor: pointer;
 }
 
-.submit:hover {
+.btn-primary:hover {
     background-color: #e5c402;
     transform: scale(1.02);
-}
-
-/* Footer collé en bas */
-footer {
-    text-align: center;
-    color: #fff;
-    padding: 15px 0;
-    font-size: 14px;
-}
-
-/* ===== Bloc de récapitulatif pour confirmation.html ===== */
-#recap {
-    background-color: #1f1f1f;
-    border: 1px solid #333;
-    border-radius: 12px;
-    padding: 20px;
-    color: #eee;
-    font-size: 14px;
-    line-height: 1.7;
-    margin-bottom: 20px;
-}
-
-#recap strong {
-    color: #fed402;
-}
-
-/* ===== Animation simple ===== */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
