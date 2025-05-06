@@ -1,28 +1,22 @@
 <?php
 session_start(); // Démarrer la session
 
-$host = 'localhost';
-$dbname = 'LocationChef';
-$username = 'root';
-$password = '';
+$conn = new mysqli("localhost", "u716777407_admin1", "Dalulou123", "u716777407_LocationChef");
 
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die('Erreur de connexion à la base de données : ' . $e->getMessage());
+if ($conn->connect_error) {
+    echo json_encode(['success' => false, 'error' => 'Erreur de connexion à la base de données.']);
+    exit;
 }
 
 // Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['client_id'])) {
+if (!isset($_SESSION['user_id'])) {
     // Rediriger vers la page de connexion
     header("Location: ../connexion.html");
     exit;
 }
 
 // recup l'ID du client depuis la session
-$client_id = $_SESSION['client_id'];
+$client_id = $_SESSION['user_id'];
 
 // recup les données du formulaire
 $chef_id = $_POST['chef_id'] ?? null;

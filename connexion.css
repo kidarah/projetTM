@@ -116,7 +116,9 @@ body {
     font-weight: 600;
 }
 
-
+.logout-link{
+    text-align: center;
+}
 
 .submit {
     border: none;

@@ -67,6 +67,113 @@ body {
   margin-top: 2rem;
 }
 
+/* 🎨 Style du formulaire d'avis */
+.review-form {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;  /* Largeur fixe sur PC */
+  margin: 20px 0;    /* Espace autour */
+  text-align: left;
+  position: relative;
+  left: 20px; /* Colle le formulaire à gauche */
+}
+
+/* 🎯 Titre du formulaire */
+.review-form h2 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* 🎯 Labels */
+.review-form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* ⭐ Sélecteur de notes */
+.review-form select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.review-form select:hover {
+  border-color:  #fce173;
+}
+
+/* ✍️ Champ de texte */
+.review-form textarea {
+  width: 100%;
+  max-width: 100%; /* Empêche tout débordement */
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  resize: none;
+  height: 80px;
+  box-sizing: border-box; /* Évite les débordements liés au padding */
+  transition: border-color 0.3s ease;
+}
+
+.review-form textarea:focus {
+  border-color:  #f7d344;
+}
+
+/* 🖱️ Bouton de soumission */
+.review-form button {
+  background:  #ffcc00;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s ease;
+}
+
+.review-form button:hover {
+  background: #fedf65;
+}
+
+.review-form button:active {
+  transform: scale(0.98);
+}
+
+/* 📱 Adaptation pour mobiles */
+@media screen and (max-width: 600px) {
+  .review-form {
+      max-width: 95%;
+      left: 0;  /* Suppression de l'alignement à gauche */
+      margin: auto; /* Centrage sur mobile */
+  }
+
+  .review-form h2 {
+      font-size: 20px;
+      text-align: center;
+  }
+
+  .review-form select,
+  .review-form textarea,
+  .review-form button {
+      font-size: 14px;
+  }
+
+  .review-form textarea {
+      height: 70px; /* Ajustement pour mobile */
+  }
+}
+
+
 .profile-section h2 {
   font-size: 1.3rem;
   margin-bottom: 1rem;

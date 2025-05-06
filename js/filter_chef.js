@@ -2,6 +2,8 @@ let chefsData = [];
 let currentIndex = 0;
 
 function renderChef(index) {
+  console.log("Données reçues dans renderChef :", chefsData);
+
   const container = $('#chefs-filter');
   container.empty();
 
@@ -21,9 +23,9 @@ function renderChef(index) {
             <div class="time d-flex flex-row align-items-center justify-content-between mt-3">
               <div class="d-flex align-items-center">
                 <i class="fa fa-clock-o clock"></i>
-                <span class="hour ml-1">3 hrs</span>
+                <span class="hour ml-1">1 hrs</span>
               </div>
-              <div><span class="font-weight-bold">$90</span></div>
+              <div><span class="font-weight-bold">${chef.tarif_horaire}€</span></div>
             </div>
           </div>
           <div class="second d-flex flex-row mt-2">
@@ -32,24 +34,20 @@ function renderChef(index) {
             </div>   
             <div>
               <div class="d-flex flex-row mb-1">
-                <span>@${chef.nom}</span>
-                <div class="ratings ml-2">
-                  <i class="fa fa-star"></i><i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i><i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
+                <span>@${chef.nom}  </span>
+                  <div class="ratings ml-2">
+                  ${chef.note_moyenne}<i class="fa fa-star"></i>
                 </div>
               </div>
               <div>
-                <button class="btn btn-outline-dark btn-sm px-2">+ follow</button>
-                <button class="btn btn-outline-dark btn-sm see-profile" data-id="${chef.id}">See Profile</button>
-                <button class="btn btn-outline-dark btn-sm"><i class="fa fa-comment-o"></i></button>
+                <button class="btn btn-outline-dark btn-sm see-profile" data-id="${chef.id}">Voir profil</button> 
               </div>
             </div> 
           </div>
           <hr class="line-color">
-          <h6>48 comments</h6>
+          <h6>${chef.nombre_avis} comments</h6>
           <div class="third mt-4">
-            <button class="btn btn-warning btn-block book-now" data-chef-id="${chef.id}"><i class="fa fa-clock-o"></i> Book Now</button>
+            <button class="btn btn-warning btn-block book-now" data-chef-id="${chef.id}"><i class="fa fa-clock-o"></i>Réserver</button>
           </div>
         </div>
       </div>
@@ -71,6 +69,8 @@ function renderChef(index) {
   
   } else {
     // Desktop : afficher toutes les cartes
+    console.log("Type de chefsData :", typeof chefsData);
+console.log("Valeur de chefsData :", chefsData);
     chefsData.forEach((chef) => {
       const card = `
         <div class="col-12 col-md-4 d-flex justify-content-center card-container">
@@ -80,9 +80,9 @@ function renderChef(index) {
               <div class="time d-flex flex-row align-items-center justify-content-between mt-3">
                 <div class="d-flex align-items-center">
                   <i class="fa fa-clock-o clock"></i>
-                  <span class="hour ml-1">3 hrs</span>
+                  <span class="hour ml-1">1 hrs</span>
                 </div>
-                <div><span class="font-weight-bold">$90</span></div>
+                <div><span class="font-weight-bold">${chef.tarif_horaire}€</span></div>
               </div>
             </div>
             <div class="second d-flex flex-row mt-2">
@@ -92,23 +92,19 @@ function renderChef(index) {
               <div>
                 <div class="d-flex flex-row mb-1">
                   <span>@${chef.nom}</span>
-                  <div class="ratings ml-2">
-                    <i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                    <div class="ratings ml-2">
+                    ${chef.note_moyenne}<i class="fa fa-star"></i>
                   </div>
                 </div>
                 <div>
-                  <button class="btn btn-outline-dark btn-sm px-2">+ follow</button>
-                  <button class="btn btn-outline-dark btn-sm see-profile" data-id="${chef.id}">See Profile</button>
-                  <button class="btn btn-outline-dark btn-sm"><i class="fa fa-comment-o"></i></button>
+                  <button class="btn btn-outline-dark btn-sm see-profile" data-id="${chef.id}">Voir profil</button>
                 </div>
               </div> 
             </div>
             <hr class="line-color">
-            <h6>48 comments</h6>
+            <h6>${chef.nombre_avis} comments</h6>
             <div class="third mt-4">
-              <button class="btn btn-warning btn-block book-now" data-chef-id="${chef.id}"><i class="fa fa-clock-o"></i> Book Now</button>
+              <button class="btn btn-warning btn-block book-now" data-chef-id="${chef.id}"><i class="fa fa-clock-o"></i>Réserver</button>
             </div>
           </div>
         </div>
@@ -169,15 +165,20 @@ $(document).ready(function () {
       data: { specialty, city },
       dataType: 'json',
       success: function (chefs) {
+        console.log("Chefs reçus :", chefs); // 🔍 Vérifier la réponse JSON
         chefsData = chefs;
         currentIndex = 0;
         renderChef(currentIndex);
-
+    
         if (isMobile()) {
           setupSwipe();
         }
+      },
+      error: function(xhr, status, error) {
+        console.error("Erreur AJAX :", error);
       }
     });
+    
   });
 
   if (chefsData.length > 0) {

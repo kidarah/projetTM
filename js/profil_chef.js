@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("Données du chef récupérées :", chef);
 
             // Mettre à jour la page avec les données du chef
-            document.getElementById("chefNom").innerText =  "lukas" ;
+            document.getElementById("chefNom").innerText = chef.prenom + " " + chef.nom; ;
             document.getElementById("chefSpecialite").innerText = "Spécialité : " + chef.specialites;
             document.getElementById("chefBio").innerText = chef.experience || "Aucune biographie disponible";
             document.getElementById("chefPhoto").src = chef.photo || "default.jpg";

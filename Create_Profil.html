@@ -21,28 +21,46 @@
       <div class="rating" id="chefRating"></div>
     </div>
     <div class="edit-button-absolute" id="editBtnWrapper">
-      <button id="editBtn" class="edit-btn" onclick="toggleEdit()">Edit Profile</button>
+      <button id="editBtn" class="edit-btn" onclick="toggleEdit()">Modifier profil</button>
     </div>    
   </div>
 
   <!-- Description -->
   <section class="profile-section">
-    <h2>About</h2>
+    <h2>Expériences</h2>
     <p id="chefBio"></p>
   </section>
 
   <!-- Gallery -->
   <section class="profile-section">
-    <h2>Dishes Gallery</h2>
+    <h2>Photos de plats</h2>
     <div class="gallery-grid" id="galleryGrid"></div>
     <label for="photoPlatFile" class="upload-box" id="uploadLabel">
-      <span>➕ Add Dish</span>
+      <span>➕ ajouter une photos</span>
       <input id="photoPlatFile" type="file" accept="image/*" onchange="addDish()" />
     </label>
   </section>
 
   <!-- Reviews -->
   <section class="profile-section">
+    <!-- Section Laisser un Avis -->
+<section class="profile-section">
+  <h2>Laisser un avis</h2>
+  <div class="review-form">
+    <label for="reviewRating">Note (1-5) :</label>
+    <select id="reviewRating">
+      <option value="1">⭐</option>
+      <option value="2">⭐⭐</option>
+      <option value="3">⭐⭐⭐</option>
+      <option value="4">⭐⭐⭐⭐</option>
+      <option value="5">⭐⭐⭐⭐⭐</option>
+    </select>
+
+    <textarea id="reviewComment" placeholder="Rédigez votre avis ici..."></textarea>
+    <button id="submitReviewBtn">Soumettre l'avis</button>
+  </div>
+</section>
+
     <h2>Reviews</h2>
     <div id="reviewsContainer" class="reviews"></div>
   </section>
@@ -53,13 +71,15 @@
 <div class="modal hidden" id="editModal">
   <div class="modal-content">
     <h3>Edit Profile</h3>
-    <input type="text" id="editNom" placeholder="Name">
-    <input type="text" id="editSpecialite" placeholder="Specialty">
-    <textarea id="editBio" placeholder="Biography..."></textarea>
+    <input type="text" id="editNom" placeholder="Nom">
+    <input type="text" id="editPrenom" placeholder="Prénom">
+    <input type="number" id="tarif" placeholder="Tarif horaire" min = 0 step="0.01">
+    <input type="text" id="editSpecialite" placeholder="Spécialité">
+    <textarea id="editBio" placeholder="Expérience"></textarea>
     <input type="file" id="photoUpload" accept="image/*">
     <div class="modal-actions">
-      <button onclick="saveProfile()">Save</button>
-      <button onclick="toggleEdit()">Cancel</button>
+      <button onclick="saveProfile()">Sauvegarder</button>
+      <button onclick="toggleEdit()">Annuler</button>
     </div>
   </div>
 </div>
@@ -69,52 +89,138 @@
 
 
 <script>
-  function toggleEdit() {
-    document.getElementById("editModal").classList.toggle("hidden");
-    const profile = getChefProfile();
-    document.getElementById("editNom").value = profile.nom;
-    document.getElementById("editSpecialite").value = profile.specialite;
-    document.getElementById("editBio").value = profile.bio;
+  document.addEventListener("DOMContentLoaded", () => {
+  const userRole = localStorage.getItem("userRole");
+
+  // Masquer le formulaire d'avis si l'utilisateur n'est pas un client
+  if (userRole !== "client") {
+    document.querySelector(".review-form").style.display = "none";
   }
 
-  function saveProfile() {
-  const formData = new FormData();
-  formData.append("nom", document.getElementById("editNom").value);
-  formData.append("specialite", document.getElementById("editSpecialite").value);
-  formData.append("bio", document.getElementById("editBio").value);
-  formData.append("photo", document.getElementById("photoUpload").files[0]);
+  // Associer la fonction d'envoi au bouton
+  document.getElementById("submitReviewBtn").addEventListener("click", soumettreAvis);
+});
 
-  fetch("update_chef.php", {
+function soumettreAvis() {
+  const note = document.getElementById("reviewRating").value;
+  const commentaire = document.getElementById("reviewComment").value;
+  const chefId = new URLSearchParams(window.location.search).get("id");
+
+  if (!commentaire.trim()) {
+    alert("Veuillez écrire un avis avant de soumettre.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("note", note);
+  formData.append("commentaire", commentaire);
+  formData.append("chef_id", chefId);
+
+  fetch("/backend/ajouter_avis.php", {
     method: "POST",
     body: formData
   })
-  .then(response => response.text())
-  .then(message => console.log(message))
-  .catch(error => console.error("Erreur:", error));
+  .then(response => response.json())
+  .then(data => {
+    if (data.error) {
+      alert(data.error); // Affiche le message d'erreur
+      return; // Ne pas recharger la page
+    }
+
+    alert("Avis soumis avec succès !");
+    window.location.reload(); // Recharger la page pour afficher l'avis
+  })
+  .catch(error => console.error("Erreur lors de l'envoi de l'avis :", error));
 }
 
 
-  function getChefProfile() {
-    const current = JSON.parse(localStorage.getItem("currentChef"));
-    const chefs = JSON.parse(localStorage.getItem("chefs")) || [];
-    return chefs.find(c => c.email === current.email);
-  }
 
-  function renderProfile(profile) {
-    document.getElementById("chefNom").innerText = profile.nom;
-    document.getElementById("chefSpecialite").innerText = "Specialty: " + profile.specialite;
-    document.getElementById("chefBio").innerText = profile.bio;
-    document.getElementById("chefPhoto").src = profile.photo || "https://source.unsplash.com/120x120/?chef";
+document.addEventListener("DOMContentLoaded", () => {
+    fetch("/backend/getUserRole.php")
+        .then(response => response.json()) 
+        .then(data => {
+            localStorage.setItem("userRole", data.role);
+            applyRoleRestrictions();
+            fetchChefProfile(); // Charger le chef directement
+        })
+        .catch(error => console.error("Erreur de récupération du rôle:", error));
+});
 
-    const gallery = document.getElementById("galleryGrid");
-    gallery.innerHTML = "";
-    (profile.plats || []).forEach(src => {
-      const img = document.createElement("img");
-      img.src = src;
-      img.classList.add("gallery-img");
-      gallery.appendChild(img);
-    });
-  }
+function applyRoleRestrictions() {
+    const userRole = localStorage.getItem("userRole");
+
+    if (userRole === "client") {
+        document.getElementById("editBtnWrapper").style.display = "none";
+        document.getElementById("uploadLabel").style.display = "none";
+    }
+}
+
+function fetchChefProfile() {
+    const chefId = new URLSearchParams(window.location.search).get("id");
+
+    fetch(`/backend/get_chef.php?id=${chefId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error("Erreur :", data.error);
+                return;
+            }
+
+            
+        })
+        .catch(error => console.error("Erreur lors du chargement du chef :", error));
+}
+
+async function toggleEdit() {
+    const chefId = new URLSearchParams(window.location.search).get("id");
+
+    try {
+        const response = await fetch(`/backend/get_chef.php?id=${chefId}`);
+        const profile = await response.json();
+
+        if (profile.error) {
+            alert("Erreur : Impossible de charger le profil.");
+            return;
+        }
+
+        document.getElementById("editModal").classList.toggle("hidden");
+        document.getElementById("editNom").value = profile.nom || "";
+        document.getElementById("editPrenom").value = profile.prenom || "";
+        document.getElementById("tarif").value = profile.tarif_horaire || "";
+        document.getElementById("editSpecialite").value = profile.specialite || "";
+        document.getElementById("editBio").value = profile.bio || "";
+    } catch (error) {
+        console.error("Erreur lors du chargement du profil :", error);
+    }
+}
+
+
+function saveProfile() {
+    const formData = new FormData();
+    formData.append("nom", document.getElementById("editNom").value);
+    formData.append("prenom", document.getElementById("editPrenom").value);
+    formData.append("tarif", document.getElementById("tarif").value);
+    formData.append("specialite", document.getElementById("editSpecialite").value);
+    formData.append("bio", document.getElementById("editBio").value);
+    formData.append("photo", document.getElementById("photoUpload").files[0]);
+
+    fetch("/backend/update_chef.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert("Erreur : " + data.error);
+            return;
+        }
+
+        alert(data.success);
+        window.location.reload();
+    })
+    .catch(error => console.error("Erreur lors de la mise à jour :", error));
+}
+
 
   function addDish() {
     const file = document.getElementById("photoPlatFile").files[0];
@@ -133,13 +239,7 @@
     reader.readAsDataURL(file);
   }
 
-  const profile = getChefProfile();
-  renderProfile(profile);
-
-  if (profile.email === JSON.parse(localStorage.getItem("currentChef")).email) {
-    document.getElementById("editBtn").classList.remove("d-none");
-    document.getElementById("uploadLabel").classList.remove("d-none");
-  }
+  
 </script>
 
 </body>
